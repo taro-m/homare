@@ -1,0 +1,25 @@
+---
+---
+<!DOCTYPE html>
+<title>Password reset sample</title>
+
+<style>
+label { display: inline-block; width: 6em; }
+</style>
+
+<h1>Password reset sample</h1>
+
+<form action="{{site.api_root}}/api/v1/request-password-reset" method="POST"
+  enctype="application/x-www-form-urlencoded">
+  <label>Email</label><input type="text" name="email"></input><br />
+  <input type="hidden" name="callback" value="{{site.cb_root}}/reset/callback.html"></input>
+  <input type="submit"></input>
+</form>
+
+<hr />
+
+<nav>
+  <ul>
+    <li><a href="..">Back to list of samples</a>
+  </ul>
+</nav>
