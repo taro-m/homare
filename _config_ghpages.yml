@@ -1,0 +1,10 @@
+encoding: utf-8
+
+exclude:
+  - 'README.mkd'
+  - 'tmp'
+
+destination: _ghpages
+
+api_root: 'https://kii-mutsu.herokuapp.com'
+cb_root: 'http://taro-m.github.io/homare'
