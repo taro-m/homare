@@ -43,13 +43,13 @@ function putParamsToDl(params, dl) {
   var v;
   for (var k in params) {
     var dt = document.createElement('dt');
-    dt.innerText = k;
+    dt.textContent = k;
     dl.appendChild(dt);
     var dd = document.createElement('dd');
     if ((v = params[k]) == (void 0) || v.length == 0) {
-      dd.innerText = '(empty string)'
+      dd.textContent = '(empty string)'
     } else {
-      dd.innerText = params[k];
+      dd.textContent = params[k];
     }
     dl.appendChild(dd);
   }
@@ -69,7 +69,7 @@ function decodeErrors(code) {
   var ul = document.getElementById('errors');
   var put = function (msg) {
     var li = document.createElement('li');
-    li.innerText = msg;
+    li.textContent = msg;
     ul.appendChild(li);
   }
 
