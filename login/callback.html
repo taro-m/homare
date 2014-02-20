@@ -5,7 +5,7 @@
 
 <h1>Login callback</h1>
 
-<h2>Parameters</h2>
+<h2>Callback parameters</h2>
 <dl id="params">
 </dl>
 
@@ -32,9 +32,7 @@ function getParams() {
   return retval;
 }
 
-window.onload = function() {
-  var dl = document.getElementById('params');
-  var params = getParams();
+function putParamsToDl(params, dl) {
   var v;
   for (var k in params) {
     var dt = document.createElement('dt');
@@ -48,6 +46,11 @@ window.onload = function() {
     }
     dl.appendChild(dd);
   }
+}
+
+window.onload = function() {
+  var params = getParams();
+  putParamsToDl(params, document.getElementById('params'));
 }
 
 </script>
