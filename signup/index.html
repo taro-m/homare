@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<title>Sign up sample</title>
+
+<style>
+label { display: inline-block; width: 6em; }
+</style>
+
+<h1>Sign up sample</h1>
+
+<form action="https://kii-mutsu.herokuapp.com/api/v1/signup" method="POST"
+  enctype="application/x-www-form-urlencoded">
+  <label>First name</label><input type="text" name="first_name"></input><br />
+  <label>Last name</label><input type="text" name="last_name"></input><br />
+  <label>Email</label><input type="text" name="email"></input><br />
+  <label>Password</label><input type="password" name="password"></input><br />
+  <label>(confirm)</label><input type="password" name="password_confirmation"></input><br />
+  <input type="hidden" name="callback" value="http://taro-m.github.io/homare/signup/callback.html"></input>
+  <input type="submit"></input>
+</form>
+
+<hr />
+
+<nav>
+  <ul>
+    <li><a href="..">Back to list of samples</a>
+  </ul>
+</nav>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<title>Sign up callback</title>
+
+<style>
+#errors { color: red; }
+</style>
+
+<h1>Sign up callback</h1>
+
+<h2>Callback parameters</h2>
+<dl id="params">
+</dl>
+
+<h2>Decoded errors</h2>
+<ul id="errors">
+</ul>
+
+<hr />
+
+<nav>
+  <ul>
+    <li><a href="https://kii-mutsu.herokuapp.com">Go to dashboard</a>
+    <li><a href="./">Back to sign up form</a>
+    <li><a href="..">Back to list of samples</a>
+  </ul>
+</nav>
+
+<script>
+
+function getParams() {
+  var retval = {};
+  var parts = location.search.slice(1).split('&');
+  parts.forEach(function(value) {
+    var v = value.split('=');
+    if (v.length == 2) {
+      retval[v[0]] = decodeURIComponent(v[1]);
+    }
+  });
+  return retval;
+}
+
+function putParamsToDl(params, dl) {
+  var v;
+  for (var k in params) {
+    var dt = document.createElement('dt');
+    dt.innerText = k;
+    dl.appendChild(dt);
+    var dd = document.createElement('dd');
+    if ((v = params[k]) == (void 0) || v.length == 0) {
+      dd.innerText = '(empty string)'
+    } else {
+      dd.innerText = params[k];
+    }
+    dl.appendChild(dd);
+  }
+}
+
+var ERROS = [
+  [ 1, 'Email can\'t be blank'],
+  [ 2, 'Email is invalid'],
+  [ 4, 'Email has already been taken'],
+  [ 8, 'Password can\'t be blank'],
+  [16, 'Password doesn\'t match confirmation'],
+  [32, 'Users is invalid'],
+  [64, 'Username use only letters, numbers, and .-_@+ please.'],
+];
+
+function decodeErrors(code) {
+  var ul = document.getElementById('errors');
+  var put = function (msg) {
+    var li = document.createElement('li');
+    li.innerText = msg;
+    ul.appendChild(li);
+  }
+
+  if (code === (void 0)) {
+    put('(no errors)');
+    return;
+  }
+
+  code = parseInt(code);
+  if (code == 0) {
+    put('Not allowed');
+    return;
+  } else if (code < 0) {
+    put('(unknown error: ' + code + ')');
+  }
+
+  ERROS.forEach(function(err, index) {
+    if ((code & err[0]) != 0) {
+      put(err[1]);
+      code -= err[0];
+    }
+  });
+
+  if (code != 0) {
+    put('(unknown error flags: ' + code + ')');
+  }
+}
+
+window.onload = function() {
+  var params = getParams();
+  putParamsToDl(params, document.getElementById('params'));
+  decodeErrors(params['error_code']);
+}
+
+</script>

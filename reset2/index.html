@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<title>Password reset sample (by AJAX)</title>
+
+<style>
+label { display: inline-block; width: 6em; }
+</style>
+
+<h1>Password reset sample (by AJAX)</h1>
+
+<form name="form1">
+  <label>Email</label><input type="text" name="email"></input><br />
+</form>
+<button onclick="doReset();">Submit</button>
+
+<h2>AJAX last response</h2>
+<dl id="resp">
+</dl>
+
+
+<hr />
+
+<nav>
+  <ul>
+    <li><a href="..">Back to list of samples</a>
+  </ul>
+</nav>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script>
+
+function putParamsToDl(params, dl) {
+  var v;
+  for (var k in params) {
+    var dt = document.createElement('dt');
+    dt.innerText = k;
+    dl.appendChild(dt);
+    var dd = document.createElement('dd');
+    if ((v = params[k]) == (void 0) || v.length == 0) {
+      dd.innerText = '(empty string)'
+    } else {
+      dd.innerText = params[k];
+    }
+    dl.appendChild(dd);
+  }
+}
+
+function removeAllChildren(el) {
+  while (el.firstChild) {
+    el.removeChild(el.firstChild);
+  }
+}
+
+function procResponse(data, textStatus, jqXHR) {
+  var dl = document.getElementById('resp');
+  putParamsToDl(data, dl);
+}
+
+function doReset() {
+  var dl = document.getElementById('resp');
+  removeAllChildren(dl);
+  var email = document.form1.email.value;
+  $.post('https://kii-mutsu.herokuapp.com/api/v1/request-password-reset.json',
+      {'email': email}, procResponse);
+}
+
+</script>
