@@ -1,0 +1,8 @@
+encoding: utf-8
+
+exclude:
+  - 'README.mkd'
+  - 'tmp'
+
+api_root: 'http://127.0.0.1:3000'
+cb_root: 'http://127.0.0.1:4000'
