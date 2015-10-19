@@ -59,7 +59,7 @@ function doReset() {
   var dl = document.getElementById('resp');
   removeAllChildren(dl);
   var email = document.form1.email.value;
-  $.post('https://kii-mutsu.herokuapp.com/api/v1/request-password-reset.json',
+  $.post('https://stg-developer.internal.kii.com/api/v1/request-password-reset.json',
       {'email': email}, procResponse);
 }
 
