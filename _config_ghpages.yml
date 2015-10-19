@@ -7,5 +7,5 @@ exclude:
 
 destination: _ghpages
 
-api_root: 'https://kii-mutsu.herokuapp.com'
+api_root: 'https://stg-developer.internal.kii.com'
 cb_root: 'http://taro-m.github.io/homare'
